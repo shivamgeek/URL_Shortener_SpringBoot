@@ -51,20 +51,20 @@ public class User {
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonManagedReference
-	List<URL> urlList;
+	List<Url> urlList;
 	
-	public void addURL(URL url) {
+	public void addURL(Url url) {
 		if(urlList == null) {
-			urlList = new ArrayList<URL>();
+			urlList = new ArrayList<Url>();
 		}
 		urlList.add(url);
 	}
 	
-	public List<URL> getUrlList() {
+	public List<Url> getUrlList() {
 		return urlList;
 	}
 
-	public void setUrlList(List<URL> urlList) {
+	public void setUrlList(List<Url> urlList) {
 		this.urlList = urlList;
 	}
 

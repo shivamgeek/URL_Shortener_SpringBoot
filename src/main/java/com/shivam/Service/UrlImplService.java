@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shivam.DAO.UrlRepository;
-import com.shivam.Entity.URL;
+import com.shivam.Entity.Url;
 
 @Service
 public class UrlImplService implements UrlService {
@@ -16,13 +16,13 @@ public class UrlImplService implements UrlService {
 	UrlRepository urlRepository;
 
 	@Override
-	public List<URL> findAll() {
+	public List<Url> findAll() {
 		return urlRepository.findAll();
 	}
 
 	@Override
-	public URL findById(int id) {
-		Optional<URL> result = urlRepository.findById(id);
+	public Url findById(int id) {
+		Optional<Url> result = urlRepository.findById(id);
 		if(result.isEmpty() == true) {
 			return null;
 		}
@@ -35,7 +35,7 @@ public class UrlImplService implements UrlService {
 	}
 
 	@Override
-	public void save(URL url) {
+	public void save(Url url) {
 		urlRepository.save(url);
 	}
 	

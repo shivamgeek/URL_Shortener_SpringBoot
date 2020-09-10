@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="url_table")
-public class URL {
+public class Url {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class URL {
 	@JsonBackReference //Reference with BackReference won't be returned in JSON response, so breaking the loop
 	private User user;
 
-	public URL() {
+	public Url() {
 		
 	}
 	

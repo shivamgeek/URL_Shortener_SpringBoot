@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shivam.DAO.UrlRepository;
-import com.shivam.Entity.URL;
+import com.shivam.Entity.Url;
 
 @Service
 public class UrlMapper {
 	
-	HashMap<String, URL> myUrlMap;
+	HashMap<String, Url> myUrlMap;
 	
 	@Autowired
 	UrlRepository urlRepository;
@@ -21,16 +21,16 @@ public class UrlMapper {
 		super();
 	}
 
-	public HashMap<String, URL> getMyUrlMap() {
+	public HashMap<String, Url> getMyUrlMap() {
 		return myUrlMap;
 	}
 
-	public void setMyUrlMap(HashMap<String, URL> myUrlMap) {
+	public void setMyUrlMap(HashMap<String, Url> myUrlMap) {
 		this.myUrlMap = myUrlMap;
 	}
 
 	public void initiailiseMap() {
-		List<URL> list = urlRepository.findAll();
+		List<Url> list = urlRepository.findAll();
 		for(int i=0;i<list.size();i++) {
 			myUrlMap.put(list.get(i).getShortUrl(), list.get(i));
 		}
