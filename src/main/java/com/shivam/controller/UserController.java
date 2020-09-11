@@ -1,5 +1,7 @@
 package com.shivam.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,5 +81,21 @@ public class UserController {
 		model.addAttribute("urlData",url);
 		return "user-homepage";
 	}
+	
+	
+	@PostMapping("/showUrlList")
+	public String showUrlList(Model model, @RequestParam("userId") int userId){
+		User user = userService.findById(userId);
+		model.addAttribute("userData", user);
+		List<Url> list = user.getUrlList();
+		if(list == null || list.size() == 0) {
+			model.addAttribute("urlListError", "Nothing to show yet!");
+			return "user-homepage";
+		}
+		model.addAttribute("urlList", list);
+		return "user-homepage";
+	}
+	
+	
 	
 }
