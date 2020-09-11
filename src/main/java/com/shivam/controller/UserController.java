@@ -99,10 +99,9 @@ public class UserController {
 	
 	@PostMapping("/deleteUrl")
 	public String deleteUrl(Model model, @RequestParam("urlId") int urlId, @RequestParam("userId") int userId){
+		urlService.deleteById(urlId);
 		User user = userService.findById(userId);
 		model.addAttribute("userData", user);
-		urlService.deleteById(urlId);
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$ url id is "+urlId);
 		List<Url> list = user.getUrlList();
 		if(list == null || list.size() == 0) {
 			model.addAttribute("urlListError", "Nothing to show yet!");
