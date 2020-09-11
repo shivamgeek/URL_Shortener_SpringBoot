@@ -66,6 +66,7 @@
 				<th>Full URL</th>
 				<th>Short URL</th>
 				<th>Expiration Date</th>
+				<th> Action </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -74,6 +75,12 @@
 					<td th:text="${url.fullUrl}" />
 					<td th:text="${url.shortUrl}" />
 					<td th:text="${url.expirationDate}" />
+					<td>
+						 <form action="#" th:action="@{/users/deleteUrl(urlId=${url.id})}" method="POST">
+							<input type="hidden" th:name="userId" th:value="${userData.id}">
+							<button type="submit" class="btn btn-info col-2"> Delete </button>
+						</form>
+					</td>
 			</tr>
 		</tbody>
 	</table>

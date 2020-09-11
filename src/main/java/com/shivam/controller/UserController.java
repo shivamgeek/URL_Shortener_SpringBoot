@@ -74,6 +74,7 @@ public class UserController {
 		url.setFullUrl(originalUrl);
 		url.setExpirationDate(urlService.getOneYearLaterDate());
 		url.setUser(user);
+		user.addURL(url);
 		
 		urlService.save(url);
 		System.out.println("MAPPING CREATED "+url.getFullUrl()+" ==>> "+url.getShortUrl());
@@ -87,6 +88,21 @@ public class UserController {
 	public String showUrlList(Model model, @RequestParam("userId") int userId){
 		User user = userService.findById(userId);
 		model.addAttribute("userData", user);
+		List<Url> list = user.getUrlList();
+		if(list == null || list.size() == 0) {
+			model.addAttribute("urlListError", "Nothing to show yet!");
+			return "user-homepage";
+		}
+		model.addAttribute("urlList", list);
+		return "user-homepage";
+	}
+	
+	@PostMapping("/deleteUrl")
+	public String deleteUrl(Model model, @RequestParam("urlId") int urlId, @RequestParam("userId") int userId){
+		User user = userService.findById(userId);
+		model.addAttribute("userData", user);
+		urlService.deleteById(urlId);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$ url id is "+urlId);
 		List<Url> list = user.getUrlList();
 		if(list == null || list.size() == 0) {
 			model.addAttribute("urlListError", "Nothing to show yet!");
