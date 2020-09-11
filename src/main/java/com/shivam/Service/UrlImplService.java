@@ -1,5 +1,7 @@
 package com.shivam.Service;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +44,16 @@ public class UrlImplService implements UrlService {
 	@Override
 	public void save(Url url) {
 		urlRepository.save(url);
+	}
+	
+
+	@Override
+	public String getOneYearLaterDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(System.currentTimeMillis());
+		cal.add(Calendar.YEAR, 1);
+		Timestamp timestamp = new Timestamp(cal.getTimeInMillis());
+		return timestamp.toString();
 	}
 	
 	@Override

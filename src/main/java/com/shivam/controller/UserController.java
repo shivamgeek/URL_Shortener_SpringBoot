@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shivam.Entity.Url;
 import com.shivam.Entity.User;
+import com.shivam.Service.UrlService;
 import com.shivam.Service.UserService;
 
 @Controller
@@ -18,6 +20,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	UrlService urlService;
 	
 	@GetMapping("/homepage")
 	public String homepage(Model model) {
@@ -61,6 +66,15 @@ public class UserController {
 			return "user-homepage";
 		}
 		
+		Url url = new Url();
+		String shortUrl = urlService.shortenUrl(originalUrl);
+		url.setShortUrl(shortUrl);
+		url.setFullUrl(originalUrl);
+		url.setExpirationDate(urlService.getOneYearLaterDate());
+		
+		url.setUser(user);
+		
+		model.addAttribute("urlData",url);
 		
 		return "user-homepage";
 	}

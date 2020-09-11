@@ -16,4 +16,6 @@ public interface UrlService {
 	
 	public String shortenUrl(String originalUrl);
 	
+	public String getOneYearLaterDate();
+	
 }
