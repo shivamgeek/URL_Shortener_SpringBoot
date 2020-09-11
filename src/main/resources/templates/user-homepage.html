@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+
+<meta charset="UTF-8">
+<title>User Registration Page</title>
+</head>
+<body>
+
+<h4> Welcome <p th:text="${userData.firstName +' '+ userData.lastName}" /> </h4>
+
+<br>
+
+<div class="container">
+	<p class="h4 mb4"> Shorten a URL </p>
+ 	<form action="#" th:action="@{/users/createShortUrl}" method="POST">
+			<input type="text"  name="originalUrl" placeholder="Enter URL here" class="form-control mb-4 col-4">
+			<input type="hidden" th:name="userId" th:value="${userData.id}">
+			<button type="submit" class="btn btn-info col-2"> Shorten </button>
+	</form>
+
+	<p style="color:red" th:text="${urlError}"/>
+</div>
+
+
+</body>
+</html>

@@ -21,15 +21,14 @@
 <div class="container">
 	<p class="h4 mb4"> Exising User, Login </p>
  	<form action="#" th:action="@{/users/login}" method="POST">
-			<input type="text"  placeholder="Email" class="form-control mb-4 col-4">
-			<input type="text"  placeholder="Password" class="form-control mb-4 col-4">
+			<input type="text"  name="email" placeholder="Email" class="form-control mb-4 col-4">
+			<input type="text"  name="password" placeholder="Password" class="form-control mb-4 col-4">
 			<button type="submit" class="btn btn-info col-2"> Login </button>
 	</form>
+	<br>
+	<p style="color:red" th:text="${loginError}"/>
 </div>
 
 
-
-<br><br>
-<span style="color:red;"><p th:text="${date}" class="funny" /></span>
 </body>
 </html>
