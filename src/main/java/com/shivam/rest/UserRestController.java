@@ -18,7 +18,10 @@ public class UserRestController {
 	
 	@GetMapping("/login/{email}/{password}")
 	public User doLogin(@PathVariable("email") String email, @PathVariable("password")String password) {
-		User user = userService.doLogin(email, password);
+		User user = userService.loginUser(email, password);
+		if(user == null) {
+			throw new ErrorException("Invalid credentials");
+		}
 		return user;
 	}
 	

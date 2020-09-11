@@ -39,7 +39,7 @@ public class UserImplService implements UserService {
 		userRepository.save(user);
 	}
 	
-	public User doLogin(String email, String password) {
+	public User loginUser(String email, String password) {
 		List<User> list = userRepository.loginUser(email, password);
 		if(list.size() == 0 || list==null) {
 			return null;

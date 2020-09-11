@@ -14,6 +14,6 @@ public interface UserService {
 	
 	public  void save(User seed);
 	
-	public User doLogin(String email, String password);
+	public User loginUser(String email, String password);
 	
 }
