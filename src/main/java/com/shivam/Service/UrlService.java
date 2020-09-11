@@ -14,8 +14,6 @@ public interface UrlService {
 	
 	public  void save(Url url);
 	
-	public String generateNextSeed(String str);
-	
-	public String generateShortUrl(String seed, String url);
+	public String shortenUrl(String originalUrl);
 	
 }

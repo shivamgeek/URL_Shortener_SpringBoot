@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shivam.DAO.UrlRepository;
+import com.shivam.DAO.UrlSeedRepository;
 import com.shivam.Entity.Url;
+import com.shivam.Entity.UrlSeed;
 
 @Service
 public class UrlImplService implements UrlService {
 	
 	@Autowired
 	UrlRepository urlRepository;
+	
+	@Autowired
+	UrlSeedRepository urlSeedRepository;
 
 	@Override
 	public List<Url> findAll() {
@@ -39,11 +44,21 @@ public class UrlImplService implements UrlService {
 		urlRepository.save(url);
 	}
 	
+	@Override
+	public String shortenUrl(String originalUrl) {
+		UrlSeed seed  = urlSeedRepository.findById(1).get(); //Get seed value
+		String generatedUrl = createShortUrlFromSeed(seed.getSeedValue(), originalUrl); //generate a short-url from seed and long url
+		
+		String newSeed = generateNextSeed(seed.getSeedValue()); // Get next seed value
+		seed.setSeedValue(newSeed); 
+		urlSeedRepository.save(seed); //save new seed value
+		
+		return generatedUrl;
+	}
+	
 	public String generateNextSeed(String str) {
 		char arr[] = str.toCharArray();
-		
 		int i=arr.length-1;
-		
 		for(;i>=0;i--) {
 			char x = arr[i];
 			if(x == 'Z') {
@@ -57,12 +72,11 @@ public class UrlImplService implements UrlService {
 		for(;i<arr.length;i++) {
 			arr[i] = 'A';
 		}
-		
 		return new String(arr);
 	}
 	
 	//Take last 3 digits of hashcode of original URL and the 3-digit hashseed and interleave them to form a unique string
-	public String generateShortUrl(String seed, String url) {
+	public String createShortUrlFromSeed(String seed, String url) {
 		StringBuilder sb = new StringBuilder();
 		int hash = Math.abs(url.hashCode());
 		if(hash<1000) { hash=hash*1000; }
@@ -74,7 +88,5 @@ public class UrlImplService implements UrlService {
 		}
 		return sb.toString();
 	}
-
-
 	
 }
