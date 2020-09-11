@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <link rel="stylesheet" th:href="@{/css/basic.css}" />
 
 <head>
-<h2>URL_Shortener Homepage</h2>
 <body>
-
+<h2>URL_Shortener Homepage</h2>
 <hr><br><br>
 <h3>New User! Register below - </h3>
-<a href="${pageContext.request.contextPath}/user/register">Register as new user</a>
+<a th:href="@{/users/register}" class="btn btn-primary  btm-sm mb-3">Register as new user</a>
 <hr>
 <br>
 <h3>Exising User, Login - </h3>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+
+<meta charset="UTF-8">
+<title>User Registration Page</title>
+</head>
+<body>
+
+<div class="container">
+	<hr>
+	
+	<p class="h4 mb4"> Register User </p>
+	
+ 	<form action="#" th:action="@{/users/saveUser}" th:object="${userData}" method="POST">
+			<input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+			<button type="submit" class="btn btn-info col-2"> Save </button>
+	</form>
+	
+</div>
+
+<!-- <div class="container">
+<table class="table table-bordered table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Password</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="emp : ${empList}" >
+			<td th:text="${emp.firstName}" />
+			<td th:text="${emp.lastName}" />
+			<td th:text="${emp.email" />
+		</tr>
+	</tbody>
+</table>
+</div> -->
+
+<br>
+
+<a th:href="@{/users/homepage}">Go Back</a>
+</body>
+</html>
