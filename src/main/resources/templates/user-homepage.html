@@ -13,7 +13,11 @@
 </head>
 <body>
 
-<h4> Welcome <p th:text="${userData.firstName +' '+ userData.lastName}" /> </h4>
+<h4> Welcome <span th:text="${userData.firstName +' '+ userData.lastName}"></span> </h4>
+
+<div style="text-align:right" >
+<a th:href="@{/users/homepage}">Logout</a>
+</div>
 
 <br>
 
@@ -26,6 +30,14 @@
 	</form>
 
 	<p style="color:red" th:text="${urlError}"/>
+</div>
+
+<div th:if="${urlData != null}">
+<p>
+	Your generated URL for <span th:text="${urlData.fullUrl}"></span> is 
+	 <span th:text="${urlData.shortUrl}"></span>
+	  with expiry <span th:text="${urlData.expirationDate}"></span>
+</p>
 </div>
 
 

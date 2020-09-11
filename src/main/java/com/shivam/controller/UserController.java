@@ -71,11 +71,12 @@ public class UserController {
 		url.setShortUrl(shortUrl);
 		url.setFullUrl(originalUrl);
 		url.setExpirationDate(urlService.getOneYearLaterDate());
-		
 		url.setUser(user);
 		
-		model.addAttribute("urlData",url);
+		urlService.save(url);
+		System.out.println("MAPPING CREATED "+url.getFullUrl()+" ==>> "+url.getShortUrl());
 		
+		model.addAttribute("urlData",url);
 		return "user-homepage";
 	}
 	
