@@ -10,7 +10,7 @@ import com.shivam.Entity.User;
 import com.shivam.Service.UserService;
 
 @RestController
-@RequestMapping("/api_users")
+@RequestMapping("/users")
 public class UserRestController {
 	
 	@Autowired
@@ -28,6 +28,16 @@ public class UserRestController {
 	@GetMapping("/hello")
 	public String sayHello() {
 		return "Hello User";
+	}
+	
+	@GetMapping("/get_{id}")
+	public User doLogin(@PathVariable("id") int id) {
+		User user = userService.findById(id);
+		if(user == null) {
+			throw new ErrorException("Invalid credentials");
+		}
+		user.setLastName("BOOGGEEYYMANNN");
+		return user;
 	}
 	
 }

@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name="user_table")
 public class User {
@@ -50,7 +48,6 @@ public class User {
 	private int numUrls;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonManagedReference
 	List<Url> urlList;
 	
 	public void addURL(Url url) {

@@ -11,8 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table(name="url_table")
 public class Url {
@@ -37,7 +35,6 @@ public class Url {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonBackReference //Reference with BackReference won't be returned in JSON response, so breaking the loop
 	private User user;
 
 	public Url() {
