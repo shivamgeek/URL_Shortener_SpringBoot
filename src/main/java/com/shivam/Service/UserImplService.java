@@ -40,8 +40,8 @@ public class UserImplService implements UserService {
 	}
 	
 	public User doLogin(String email, String password) {
-		List<User> list = findAll(); //userRepository.doLogin(email, password);
-		if(list == null || list.size() == 0) {
+		List<User> list = userRepository.loginUser(email, password);
+		if(list.size() == 0 || list==null) {
 			return null;
 		}
 		return list.get(0);
