@@ -23,22 +23,22 @@ public class User {
 	private int id;
 	
 	@NotNull(message="This is a mandatory field")
-	@Size(min=1, message="Enter atleast 1 character")
+	@Size(min=3, max=10, message="First name should be between 3-10 characters")
 	@Column(name="first_name")
 	private String firstName;
 	
 	@NotNull(message="This is a mandatory field")
-	@Size(min=1, message="Enter atleast 1 character")
+	@Size(min=3, max=10, message="Last name should be between 3-10 characters")
 	@Column(name="last_name")
 	private String lastName;
 	
 	@NotNull(message="This is a mandatory field")
-	@Size(min=1, message="Enter atleast 1 character")
+	@Size(min=1, message="Enter valid email")
 	@Column(name="email")
 	private String email;
 	
 	@NotNull(message="This is a mandatory field")
-	@Size(min=1, message="Enter atleast 1 character")
+	@Size(min=1, message="Password cannot be empty")
 	@Column(name="passkey")
 	private String password;
 	
