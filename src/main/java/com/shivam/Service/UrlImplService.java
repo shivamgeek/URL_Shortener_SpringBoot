@@ -30,7 +30,7 @@ public class UrlImplService implements UrlService {
 	@Override
 	public Url findById(int id) {
 		Optional<Url> result = urlRepository.findById(id);
-		if(result.isEmpty() == true) {
+		if(result.isPresent() == false) {
 			return null;
 		}
 		return result.get();

@@ -21,7 +21,7 @@ public class UrlSeedServiceImpl implements UrlSeedService {
 	@Override
 	public UrlSeed findById(int id) {
 		Optional<UrlSeed> result = urlSeedRepository.findById(id);
-		if(result.isEmpty() == true) {
+		if(result.isPresent() == false) {
 			return null;
 		}
 		return result.get();
