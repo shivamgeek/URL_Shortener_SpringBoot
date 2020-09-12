@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shivam.Entity.Url;
 import com.shivam.Entity.User;
+import com.shivam.Service.GlobalUrlMapping;
 import com.shivam.Service.UrlService;
 import com.shivam.Service.UserService;
 
@@ -28,6 +29,9 @@ public class UserController {
 	
 	@Autowired
 	UrlService urlService;
+	
+	@Autowired
+	GlobalUrlMapping mappingService;
 	
 	@GetMapping("/homepage")
 	public String homepage(Model model) {
@@ -84,6 +88,8 @@ public class UserController {
 		
 		urlService.save(url);
 		System.out.println("MAPPING CREATED "+url.getFullUrl()+" ==>> "+url.getShortUrl());
+		
+		mappingService.getHm().put(shortUrl, url);
 		
 		model.addAttribute("urlData",url);
 		return "user-homepage";
