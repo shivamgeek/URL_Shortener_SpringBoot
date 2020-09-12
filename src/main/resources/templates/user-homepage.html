@@ -38,7 +38,7 @@
 <div th:if="${urlData != null}">
 <p>
 	Your generated URL for <span th:text="${urlData.fullUrl}"></span> is 
-	 <span th:text="${urlData.shortUrl}"></span>
+	 <a th:href="@{'/go/'+${urlData.shortUrl}}"><span th:text="${urlData.shortUrl}"></span></a>
 	  with expiry <span th:text="${urlData.expirationDate}"></span>
 </p>
 </div>
@@ -73,7 +73,7 @@
 			<tr th:each="url : ${urlList}" >
 					<td th:text="${url.id}" />
 					<td th:text="${url.fullUrl}" />
-					<td th:text="${url.shortUrl}" />
+					<td> <a th:href="@{'/go/'+${url.shortUrl}}"><span th:text="${url.shortUrl}"></span></a> </td>
 					<td th:text="${url.expirationDate}" />
 					<td>
 						 <form action="#" th:action="@{/users/deleteUrl(urlId=${url.id})}" method="POST">
