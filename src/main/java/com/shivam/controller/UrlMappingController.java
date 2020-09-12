@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shivam.Service.GlobalUrlMapping;
-import com.shivam.rest.ErrorException;
 
 @Controller
 @RequestMapping("/go")
@@ -19,7 +18,7 @@ public class UrlMappingController {
 	@GetMapping("/{url}")
 	public String mapper(@PathVariable("url") String url) {
 		if(mappingService.getHm().get(url) == null) {
-			throw new ErrorException("No Mapping found !!!!");
+			return "errorPage";
 		}
 		return "redirect:https://"+mappingService.getHm().get(url).getFullUrl();
 	}
