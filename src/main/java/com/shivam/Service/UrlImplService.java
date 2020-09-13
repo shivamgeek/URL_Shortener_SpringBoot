@@ -1,5 +1,8 @@
 package com.shivam.Service;
 
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -66,6 +69,22 @@ public class UrlImplService implements UrlService {
 		urlSeedRepository.save(seed); //save new seed value
 		
 		return generatedUrl;
+	}
+	
+	public String isUrlReachable(String url) {
+		try {
+		HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+		int responseCode = connection.getResponseCode();
+		if (responseCode != 200) {
+		   	return "Status NOT_OK for this URL";
+		}
+		}catch(MalformedURLException e) {
+			return "BAD URL! Try adding http/https before";
+		}catch(Exception e) {
+			return "URL not found !";
+		}
+		
+		return null;
 	}
 	
 	public String generateNextSeed(String str) {

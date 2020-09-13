@@ -85,6 +85,12 @@ public class UserController {
 			return "user-homepage";
 		}
 		
+		String urlReachableError = urlService.isUrlReachable(originalUrl) ;
+		if(urlReachableError != null) {
+			model.addAttribute("urlError", urlReachableError);
+			return "user-homepage";
+		}
+		
 		Url url = new Url();
 		String shortUrl = urlService.shortenUrl(originalUrl);
 		url.setShortUrl(shortUrl);

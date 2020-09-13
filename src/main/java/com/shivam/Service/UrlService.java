@@ -18,4 +18,6 @@ public interface UrlService {
 	
 	public String getOneYearLaterDate();
 	
+	public String isUrlReachable(String url);
+	
 }
