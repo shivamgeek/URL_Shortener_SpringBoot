@@ -46,10 +46,17 @@ public class UserController {
 	}
 	
 	@PostMapping("/saveUser")
-	public String saveUser(@Valid @ModelAttribute("userData") User user, BindingResult result) {
-		if(result.hasErrors() == true) {
+	public String saveUser(Model model, @Valid @ModelAttribute("userData") User user, BindingResult result) {
+		if(user == null || result.hasErrors() == true) {
 			return "register-user";
 		}
+		
+		//Check is someone has already registerd with same email id
+		if(userService.findUserByEmail(user.getEmail()) == true){
+			model.addAttribute("emailError","This email is already registered");
+			return "register-user";
+		}
+		
 		userService.save(user);
 		return "redirect:/users/homepage";
 	}

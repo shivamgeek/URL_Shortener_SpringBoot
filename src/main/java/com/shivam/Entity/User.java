@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,6 +36,7 @@ public class User {
 	@NotNull(message="This is a mandatory field")
 	@Size(min=1, max=20, message="Enter valid email")
 	@Column(name="email", unique=true)
+	@Email
 	private String email;
 	
 	@NotNull(message="This is a mandatory field")
