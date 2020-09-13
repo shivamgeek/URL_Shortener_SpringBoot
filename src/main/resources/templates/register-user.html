@@ -19,19 +19,26 @@
 	<p class="h4 mb4"> Register User </p>
 	
  	<form action="#" th:action="@{/users/saveUser}" th:object="${userData}" method="POST">
- 			<div style="display:inline">
-			<input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control mb-4 col-4">
-			<span  class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
+ 			<div class="form-row">
+				<input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control mb-4 col-4">
+				<span  class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
 			</div>
-			<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">
-			<span class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></span>
 			
+			<div class="form-row">
+			<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">
+			<span class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></span>
+			</div>
+			
+			<div class="form-row">
 			<input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
 			<span class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></span>
 			<span style="color:red" th:text="${emailError} "></span>
+			</div>
 			
-			<input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+			<div class="form-row">
+			<input type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
 			<span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></span>
+			</div>
 			
 			<button type="submit" class="btn btn-info col-2"> Save </button>
 	</form>
