@@ -33,8 +33,8 @@ public class User {
 	private String lastName;
 	
 	@NotNull(message="This is a mandatory field")
-	@Size(min=1, message="Enter valid email")
-	@Column(name="email")
+	@Size(min=1, max=20, message="Enter valid email")
+	@Column(name="email", unique=true)
 	private String email;
 	
 	@NotNull(message="This is a mandatory field")

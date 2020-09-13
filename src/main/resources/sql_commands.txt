@@ -12,16 +12,14 @@ create table user_table (
 );
 
 create table url_table (
-id int not null auto_increment,
-full_url varchar(500) default null,
-short_url varchar(45) default null unique,
-user_id int not null,
-expiration_date datetime default null,
-primary key (id)
+	id int not null auto_increment,
+	full_url varchar(500) default null,
+	short_url varchar(45) default null unique,
+	user_id int not null,
+	expiration_date datetime default null,
+	primary key (id),
+	foreign key(user_id) references user_table(id);
 );
-
-alter table url_table add foreign key(user_id) references user_table(id);
-
 
 create table url_seed(
 	id int not null auto_increment,
