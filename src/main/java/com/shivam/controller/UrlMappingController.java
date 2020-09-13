@@ -20,7 +20,8 @@ public class UrlMappingController {
 		if(mappingService.getHm().get(url) == null) {
 			return "errorPage";
 		}
-		return "redirect:https://"+mappingService.getHm().get(url).getFullUrl();
+		String redirectUrl = mappingService.getHm().get(url).getFullUrl();
+		return "redirect:"+redirectUrl;
 	}
 	
 }
