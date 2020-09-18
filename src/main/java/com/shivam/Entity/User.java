@@ -44,6 +44,12 @@ public class User {
 	@Column(name="passkey")
 	private String password;
 	
+	@Column(name="user_role")
+	private String userRole;
+	
+	@Column(name="user_enabled")
+	private boolean userEnabled;
+
 	@Column(name="num_urls")
 	private int numUrls;
 	
@@ -57,6 +63,22 @@ public class User {
 		urlList.add(url);
 	}
 	
+	public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+	
+	public boolean isUserEnabled() {
+		return userEnabled;
+	}
+
+	public void setUserEnabled(boolean userEnabled) {
+		this.userEnabled = userEnabled;
+	}
+
 	public List<Url> getUrlList() {
 		return urlList;
 	}

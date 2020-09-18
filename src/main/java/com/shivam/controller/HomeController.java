@@ -47,13 +47,15 @@ public class HomeController {
 			model.addAttribute("emailError","This email is already registered");
 			return "register-user";
 		}
-		
+		user.setUserEnabled(true);
+		user.setUserRole("SIGNED_IN_USER");
 		userService.save(user);
 		return "redirect:/homepage";
 	}
 	
 	@PostMapping("/userLogin")
 	public String loginUser(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
+		System.out.println("**********########### REQUEST RECEIVED AT /userLogin");
 		User user = userService.loginUser(email, password);
 		if(user == null) {
 			model.addAttribute("loginError", "Invalid Credentials, try again");
