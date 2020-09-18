@@ -14,13 +14,13 @@
 <h2><span style="text-align:center" class="badge badge-secondary">Welcome to URL Shortening service</span></h2>
 <hr><br><br>
 <h3>New User! Register below - </h3>
-<a th:href="@{/users/register}" class="btn btn-primary  btm-sm mb-3">Register as new user</a>
+<a th:href="@{/register}" class="btn btn-primary  btm-sm mb-3">Register as new user</a>
 <hr>
 <br>
 
 <div class="container">
 	<p class="h4 mb4"> Exising User, Login </p>
- 	<form action="#" th:action="@{/users/login}" method="POST">
+ 	<form action="#" th:action="@{/userLogin}" method="POST">
 			<input type="text"  name="email" placeholder="Email" class="form-control mb-4 col-4">
 			<input type="text"  name="password" placeholder="Password" class="form-control mb-4 col-4">
 			<button type="submit" class="btn btn-info col-2"> Login </button>
