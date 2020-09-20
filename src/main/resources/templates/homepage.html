@@ -18,7 +18,7 @@
 <hr>
 <br>
 
-<div class="container">
+<!-- <div class="container">
 	<p class="h4 mb4"> Exising User, Login </p>
  	<form action="#" th:action="@{/userLogin}" method="POST">
 			<input type="text"  name="email" placeholder="Email" class="form-control mb-4 col-4">
@@ -27,7 +27,9 @@
 	</form>
 	<br>
 	<p style="color:red" th:text="${loginError}"/>
-</div>
+</div> -->
+
+<a th:href="@{/userLogin}">LOGIN</a>
 
 
 </body>
