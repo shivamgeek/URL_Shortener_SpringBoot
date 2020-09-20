@@ -52,7 +52,8 @@ public class MySecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/userLogin").hasRole("SIGNED_IN_USER")
 		.antMatchers("/users/**").hasRole("SIGNED_IN_USER")
 		.antMatchers("/").permitAll()
-		.and().formLogin();
+		.and().formLogin()
+		.and().logout().logoutSuccessUrl("/homepage");
 	}
 	
 	@Bean
