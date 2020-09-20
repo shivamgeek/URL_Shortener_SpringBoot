@@ -7,29 +7,35 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.shivam.Entity.User;
+
 public class MyUserDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
-	private String userName;
+	private String email, password, userRole;
+	boolean userEnabled;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_SIGNED_IN_USER"));
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_"+userRole));
 	}
 	
-	public MyUserDetails(String userName) {
-		this.userName = userName;
+	public MyUserDetails(User user) {
+		email = user.getEmail();
+		password = user.getPassword();
+		userEnabled = user.isUserEnabled();
+		userRole = user.getUserRole();
 	}
 
 	@Override
 	public String getPassword() {
-		return "foo";
+		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return email;
 	}
 
 	@Override
@@ -49,7 +55,7 @@ public class MyUserDetails implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return userEnabled;
 	}
 
 }
