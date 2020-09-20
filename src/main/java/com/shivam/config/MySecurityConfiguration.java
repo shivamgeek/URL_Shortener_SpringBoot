@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,16 +21,27 @@ public class MySecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	DataSource dataSource;
 	
+	@Autowired
+	UserDetailsService userDetailsService;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		String getUserQuery = "select email,passkey,user_enabled from user_table where email=?";
 		String getRoleQuery = "select email,user_role from user_table where email=?";
 		
-		auth.jdbcAuthentication().dataSource(dataSource)
-			.usersByUsernameQuery(getUserQuery)
-			.authoritiesByUsernameQuery(getRoleQuery)
-			.rolePrefix("ROLE_");
+		/*
+		 * AuthenticationManager -> AuthenticationProvider ->authenticate() -> Take help from UserDetailsService to get the provided user details
+		 * and then do authentication based on the got information.
+		 */
+		
+		
+		
+		auth.userDetailsService(userDetailsService);
+		//	.jdbcAuthentication().dataSource(dataSource)
+		//	.usersByUsernameQuery(getUserQuery)
+		//	.authoritiesByUsernameQuery(getRoleQuery)
+		//	.rolePrefix("ROLE_");
 		
 	}
 
