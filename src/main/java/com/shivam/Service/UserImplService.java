@@ -47,12 +47,9 @@ public class UserImplService implements UserService {
 		return list.get(0);
 	}
 
-	public boolean findUserByEmail(String email) {
+	public User findUserByEmail(String email) {
 		User user = userRepository.findUserByEmail(email);
-		if(user == null) {
-			return false;
-		}
-		return true;	
+		return user;	
 	}
 
 }

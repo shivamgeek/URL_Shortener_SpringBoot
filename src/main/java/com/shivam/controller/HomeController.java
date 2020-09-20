@@ -3,6 +3,8 @@ package com.shivam.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,11 +32,13 @@ public class HomeController {
 		return "homepage";
 	}
 	
+	
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("userData", new User());
 		return "register-user";
 	}
+	
 	
 	@PostMapping("/saveUser")
 	public String saveUser(Model model, @Valid @ModelAttribute("userData") User user, BindingResult result) {
@@ -43,7 +47,7 @@ public class HomeController {
 		}
 		
 		//Check is someone has already registerd with same email id
-		if(userService.findUserByEmail(user.getEmail()) == true){
+		if(userService.findUserByEmail(user.getEmail()) != null){
 			model.addAttribute("emailError","This email is already registered");
 			return "register-user";
 		}
@@ -53,10 +57,18 @@ public class HomeController {
 		return "redirect:/homepage";
 	}
 	
+	
 	@PostMapping("/userLogin")
 	public String loginUser(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
-		System.out.println("**********########### REQUEST RECEIVED AT /userLogin");
-		User user = userService.loginUser(email, password);
+
+		System.out.println("#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@ Request received at /userLogin");
+		
+		//Get UserDetails from current Security Session
+		UserDetails ud = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		//Get the user from ud provided email/username
+		User user = userService.findUserByEmail(ud.getUsername());
+		
 		if(user == null) {
 			model.addAttribute("loginError", "Invalid Credentials, try again");
 			return "homepage";

@@ -16,6 +16,6 @@ public interface UserService {
 	
 	public User loginUser(String email, String password);
 	
-	public boolean findUserByEmail(String email);
+	public User findUserByEmail(String email);
 	
 }
