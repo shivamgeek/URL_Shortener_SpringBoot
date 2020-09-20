@@ -24,7 +24,7 @@ public class HomeController {
 	@Autowired
 	UrlService urlService;
 	
-	@GetMapping("/homepage")
+	@GetMapping({"/","/homepage"})
 	public String homepage(Model model) {
 		model.addAttribute("date", new java.util.Date());
 		return "homepage";
