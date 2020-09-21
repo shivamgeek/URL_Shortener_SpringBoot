@@ -23,7 +23,7 @@ public class Url {
 	
 	@NotNull(message="This is a mandatory field")
 	@Size(min=1, message="Enter atleast 1 character")
-	@Column(name="full_url", length=500)
+	@Column(name="full_url", length=1000)
 	private String fullUrl;
 	
 	@NotNull(message="This is a mandatory field")
